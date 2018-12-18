@@ -1,0 +1,76 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main(void)
+{
+    int p, x, hashx[2001];
+    int n, i, t;
+
+    while(~scanf("%d %d", &n, &p))
+    {
+        memset(hashx, -1, sizeof(hashx));
+        for(i = 0; i < n; i++)
+        {
+            scanf("%d", &x);
+            t = x % p;
+
+            if(hashx[t] < 0 || hashx[t] == x)
+            {
+                hashx[t] = x;
+                if(i == 0)
+                {
+                    printf("%d", t);
+                }
+
+                else
+                {
+                    printf(" %d", t);
+                }
+            }
+
+            else
+            {
+
+                if(t == p - 1)
+                {
+                    t = 0;
+                }
+                while(t < p)
+                {
+
+                    if(hashx[t] < 0 || hashx[t] == x)
+                    {
+                        hashx[t] = x;
+                        if(i == 0)
+                        {
+                            printf("%d", t);
+                            break;
+                        }
+
+                        else
+                        {
+                            printf(" %d", t);
+                            break;
+                        }
+                    }
+                    t = (t + 1) % p; //此处不能写成t++，因为可能又到最后一个位置，但是还是
+                                     //没有有找到放他的位置，此时不能跳出，而应该从0再开始找
+
+                }
+
+            }
+
+        }
+        printf("\n");
+
+    }
+  return 0;
+}
+
+/***************************************************
+User name: jk170734赵静
+Result: Accepted
+Take time: 0ms
+Take Memory: 204KB
+Submit time: 2018-12-12 21:14:37
+****************************************************/
